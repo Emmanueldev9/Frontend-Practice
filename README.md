@@ -4,13 +4,8 @@ A collection of HTML, CSS and JavaScript practice projects. Each project is self
 
 | Project | What it is | Uses |
 |---|---|---|
-| [`ea-publishing`](ea-publishing/) | E.A Publishing LTD landing page with navbar | HTML, CSS |
-| [`nazry-pharma`](nazry-pharma/) | Nazry Pharmaceuticals landing page with navbar | HTML, CSS |
 | [`aura-motion`](aura-motion/) | Branding and web agency site: home, services, portfolio, reviews, mobile sidebar menu | HTML, CSS |
 | [`zonar-studios`](zonar-studios/) | Fashion store: product image sliders, cart, favourites, customer reviews, newsletter | HTML, CSS, JS |
-| [`cervex-auth`](cervex-auth/) | Register, login and dashboard flow | HTML, CSS, JS (localStorage) |
-| [`js-exercises`](js-exercises/) | Conditional statement exercises (output in the browser console) | JS |
-
 ## Run a project
 
 Open the project's `index.html` in your browser, or start a local server from the repo root:
@@ -26,13 +21,8 @@ Then visit `http://localhost:8000`.
 ```
 frontend-practice/
 ├── index.html          # links to every project
-├── ea-publishing/      # index.html, css/, images/
-├── nazry-pharma/       # index.html, css/, images/
 ├── aura-motion/        # index.html, portfolio.html, css/, images/
 ├── zonar-studios/      # index.html, css/, js/, images/, videos/
-├── cervex-auth/        # index.html, login.html, register.html, dashboard.html, css/, js/
-└── js-exercises/       # index.html, js/
-```
 
 ## Images and videos
 
