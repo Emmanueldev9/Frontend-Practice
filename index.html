@@ -3,18 +3,382 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frontend Practice</title>
+  <title>Emmanuel | Frontend Practice</title>
+  <meta name="description" content="Two websites built with plain HTML, CSS and JavaScript: a fashion store and a branding agency site.">
+  <link rel="icon" href="zonar-studios/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 20px; line-height: 1.6; }
-    li { margin-bottom: 8px; }
+    :root {
+      --ground: #221c00;
+      --ivory: #f1e9cf;
+      --muted: #bdb594;
+      --gold: #d4af37;
+      --line: rgba(212, 175, 55, 0.3);
+      --aura-green: #173615;
+      --aura-lime: #a6e22e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ground);
+      color: var(--ivory);
+      font-family: "Hanken Grotesk", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- header ---------- */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 28px 0;
+    }
+
+    .brand {
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .brand span {
+      font-family: "Hanken Grotesk", system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 10px;
+    }
+
+    .source-link {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .source-link:hover { color: var(--gold); }
+
+    /* ---------- hero ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 72px;
+      align-items: center;
+      padding: 40px 0 88px;
+    }
+
+    .hero h1 {
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-size: clamp(2.4rem, 5.4vw, 4.3rem);
+      font-weight: 500;
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+    }
+
+    .hero p {
+      margin-top: 24px;
+      max-width: 34em;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 26px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #1a1600;
+    }
+    .btn-gold:hover { background: var(--ivory); }
+
+    .btn-line {
+      border: 1px solid var(--line);
+      color: var(--ivory);
+    }
+    .btn-line:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* the arched shop-window photo */
+    .arch-wrap {
+      position: relative;
+      max-width: 420px;
+      width: 100%;
+      justify-self: end;
+    }
+
+    .arch-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 18px -18px -18px 18px;
+      border: 1px solid var(--gold);
+      border-radius: 999px 999px 10px 10px;
+    }
+
+    .arch {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 999px 999px 10px 10px;
+      background: #423801;
+    }
+
+    .arch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .arch img {
+        animation: rise 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+      @keyframes rise {
+        from { clip-path: inset(100% 0 0 0); }
+        to { clip-path: inset(0 0 0 0); }
+      }
+    }
+
+    /* ---------- projects ---------- */
+    .project {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 64px;
+      align-items: start;
+      padding: 80px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .project h2 {
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .lead {
+      margin-top: 16px;
+      font-size: 1.1rem;
+    }
+
+    .try {
+      margin: 24px 0 0;
+      padding-left: 1.2em;
+      color: var(--muted);
+    }
+
+    .try li { margin-bottom: 6px; }
+
+    .note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project .btn { margin-top: 30px; }
+
+    .looks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .looks img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+      border-radius: 6px;
+      background: #423801;
+    }
+
+    .looks figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Aura Motion keeps its own colours ---------- */
+    .aura {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 44px;
+      align-items: center;
+      margin-bottom: 80px;
+      padding: 56px;
+      background: var(--aura-green);
+      border-radius: 20px;
+    }
+
+    .aura-logo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #0f2a0e;
+    }
+
+    .aura h2 {
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .aura p { margin-top: 14px; color: #e3ead9; }
+    .aura .note { color: #b9c9ad; }
+
+    .btn-lime {
+      display: inline-block;
+      margin-top: 26px;
+      padding: 13px 28px;
+      border-radius: 999px;
+      background: var(--aura-lime);
+      color: #111;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .btn-lime:hover { background: #fff; }
+    .btn-lime:focus-visible { outline-color: var(--ivory); }
+
+    /* ---------- footer ---------- */
+    .site-footer {
+      padding: 36px 0 56px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .site-footer a { color: var(--ivory); }
+    .site-footer a:hover { color: var(--gold); }
+
+    /* ---------- small screens ---------- */
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 56px;
+        padding-bottom: 64px;
+      }
+      .arch-wrap {
+        justify-self: start;
+        max-width: 340px;
+        margin-right: 18px;
+      }
+      .project {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 56px 0;
+      }
+      .aura {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 36px 28px;
+      }
+      .aura-logo { width: 110px; height: 110px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Frontend Practice</h1>
-  <p>A collection of HTML, CSS and JavaScript practice projects.</p>
-  <ul>
-    <li><a href="zonar-studios/index.html">ZONAR Studios</a> &ndash; fashion store with cart, favourites and reviews</li>
-    <li><a href="aura-motion/index.html">Aura Motion</a> &ndash; agency site (home + portfolio)</li>
-  </ul>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="#top">Emmanuel<span>Frontend practice</span></a>
+      <a class="source-link" href="https://github.com/Emmanueldev9/Frontend-Practice">Source code on GitHub</a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div>
+          <h1>Two websites built with plain HTML, CSS and JavaScript</h1>
+          <p>No frameworks and no templates. Start with the fashion store: its cart, favourites and reviews all work.</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="zonar-studios/index.html">Open the ZONAR store</a>
+            <a class="btn btn-line" href="aura-motion/index.html">See Aura Motion</a>
+          </div>
+        </div>
+        <div class="arch-wrap">
+          <div class="arch">
+            <img src="zonar-studios/images/women-1.jpg" alt="A look from the ZONAR womenswear collection">
+          </div>
+        </div>
+      </section>
+
+      <section class="project" aria-labelledby="zonar-title">
+        <div>
+          <h2 id="zonar-title">ZONAR Studios</h2>
+          <p class="lead">A unisex fashion store with product sliders for menswear, womenswear and watches.</p>
+          <ul class="try">
+            <li>Hover a product photo to flip through its angles.</li>
+            <li>Add items to the cart and change the quantities.</li>
+            <li>Tap the heart to save a favourite.</li>
+            <li>Write a review and watch the star rating update.</li>
+          </ul>
+          <p class="note">Your cart, favourites and reviews are saved in your browser, so they are still there after a refresh. Built with HTML, CSS and JavaScript.</p>
+          <a class="btn btn-gold" href="zonar-studios/index.html">Open the ZONAR store</a>
+        </div>
+        <div class="looks">
+          <figure>
+            <img src="zonar-studios/images/urban.1.jpg" alt="Menswear: the Urban Edge outfit" loading="lazy">
+            <figcaption>Menswear</figcaption>
+          </figure>
+          <figure>
+            <img src="zonar-studios/images/women-2.jpg" alt="Womenswear: the Floral Romance outfit" loading="lazy">
+            <figcaption>Womenswear</figcaption>
+          </figure>
+          <figure>
+            <img src="zonar-studios/images/Rolex.1.jpg" alt="Watches: the Rolex Day-Date in gold" loading="lazy">
+            <figcaption>Watches</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="aura" aria-labelledby="aura-title">
+        <img class="aura-logo" src="aura-motion/images/logo.png" alt="Aura Motion logo">
+        <div>
+          <h2 id="aura-title">Aura Motion</h2>
+          <p>A site for a branding and web agency, with home, services and portfolio pages.</p>
+          <p class="note">Make your browser window narrow and the menu turns into a sidebar. Hover a portfolio piece to see its details. Built with HTML and CSS.</p>
+          <a class="btn-lime" href="aura-motion/index.html">Open Aura Motion</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>The source code for both sites is on <a href="https://github.com/Emmanueldev9/Frontend-Practice">GitHub</a>.</p>
+    </footer>
+  </div>
 </body>
 </html>
